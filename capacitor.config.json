@@ -1,0 +1,10 @@
+{
+  "appId": "com.visorarch.app",
+  "appName": "Dino AMOR",
+  "webDir": "www",
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}
