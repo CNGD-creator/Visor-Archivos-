@@ -1,0 +1,46 @@
+name: Compilar APK
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Instalar dependencias
+        run: npm install
+      - name: Agregar plataforma Android
+        run: npx cap add android
+      - name: Generar iconos
+        run: |
+          if [ -f resources/icon.png ]; then
+            mkdir -p assets
+            cp resources/icon.png assets/icon-only.png
+            cp resources/icon.png assets/icon-foreground.png
+            npx capacitor-assets generate --android --iconBackgroundColor '#ffffff'
+          else
+            echo "Sin icono personalizado"
+          fi
+      - name: Sincronizar Capacitor
+        run: npx cap sync android
+      - name: Permisos de gradlew
+        run: chmod +x android/gradlew
+      - name: Compilar APK debug
+        run: cd android && ./gradlew assembleDebug --no-daemon
+      - name: Subir APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
