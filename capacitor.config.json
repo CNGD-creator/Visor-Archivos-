@@ -1,6 +1,6 @@
 {
   "appId": "com.visorarch.app",
-  "appName": "Dino AMOR",
+  "appName": "Visor Archivos",
   "webDir": "www",
   "plugins": {
     "CapacitorHttp": {
