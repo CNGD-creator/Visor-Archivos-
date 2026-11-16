@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visor de archivos</title>
+<link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+<header>
+  <strong id="name">Visor de archivos</strong>
+  <label class="btn">Abrir<input id="pick" type="file" hidden></label>
+</header>
+<main id="view">
+  <div id="empty">
+    <h2>Abre cualquier archivo</h2>
+    <p>Word, Excel, PowerPoint, PDF, imágenes, texto, ZIP, audio y video.</p>
+  </div>
+</main>
+<script src="libs/mammoth.browser.min.js"></script>
+<script src="libs/xlsx.full.min.js"></script>
+<script src="libs/pdf.min.js"></script>
+<script src="libs/jszip.min.js"></script>
+<script src="App.js"></script>
+</body>
+</html>
